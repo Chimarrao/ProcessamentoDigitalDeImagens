@@ -50,7 +50,7 @@ public class gui extends javax.swing.JFrame {
         menuSuavizacao = new javax.swing.JMenu();
         suavizacaoMedia = new javax.swing.JMenuItem();
         suavizacaoMediana = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        suavizacaoGauss = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ConverIMG");
@@ -184,8 +184,13 @@ public class gui extends javax.swing.JFrame {
         });
         menuSuavizacao.add(suavizacaoMediana);
 
-        jMenuItem3.setText("jMenuItem3");
-        menuSuavizacao.add(jMenuItem3);
+        suavizacaoGauss.setText("Graussiano");
+        suavizacaoGauss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suavizacaoGaussActionPerformed(evt);
+            }
+        });
+        menuSuavizacao.add(suavizacaoGauss);
 
         barraMenu.add(menuSuavizacao);
 
@@ -386,6 +391,12 @@ public class gui extends javax.swing.JFrame {
         copia_editada = escala_cinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMedianaActionPerformed
+
+    private void suavizacaoGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoGaussActionPerformed
+        imagem_editada = filtrosRuidos.gauss(imagem_editada);
+        copia_editada = escala_cinza.copiaImagem(imagem_editada);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));        // TODO add your handling code here:
+    }//GEN-LAST:event_suavizacaoGaussActionPerformed
     
     private void brilho_contraste(){
         float valorContraste = sliderContraste.getValue();
@@ -451,7 +462,6 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel labeMedSuperior;
     private javax.swing.JLabel labelImgEditada;
     private javax.swing.JLabel labelImgOriginal;
@@ -471,6 +481,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JSlider sliderContraste;
     private javax.swing.JSlider sliderEscala;
     private javax.swing.JSlider sliderRotacao;
+    private javax.swing.JMenuItem suavizacaoGauss;
     private javax.swing.JMenuItem suavizacaoMedia;
     private javax.swing.JMenuItem suavizacaoMediana;
     private javax.swing.JLabel txtImagemEditada;
