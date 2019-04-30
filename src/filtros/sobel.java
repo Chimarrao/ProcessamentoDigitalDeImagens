@@ -43,11 +43,10 @@ public class sobel {
                 
                 if (auxCalculo > Threshold){
                     cor = new Color(255, 255, 255);
-                    imagemRetorna.setRGB(x, y, cor.getRGB());
                 }else{
                     cor = new Color(0, 0, 0);
-                    imagemRetorna.setRGB(x, y, cor.getRGB());
                 }
+                imagemRetorna.setRGB(x, y, cor.getRGB());
             }
         }
         return imagemRetorna;
