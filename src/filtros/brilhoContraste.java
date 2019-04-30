@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class brilhoContraste {
-    public static BufferedImage ajuste(BufferedImage imagemRecebe, float contrastePercentual, int brilhoPercentual) {
+    public static BufferedImage brilhoContraste(BufferedImage imagemRecebe, float contrastePercentual, int brilhoPercentual) {
         BufferedImage imagemRetorna = new BufferedImage(
                 imagemRecebe.getWidth(null),
                 imagemRecebe.getHeight(null),
