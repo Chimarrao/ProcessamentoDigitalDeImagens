@@ -20,7 +20,6 @@ public class gui extends javax.swing.JFrame {
     private void initComponents() {
 
         labelImgOriginal = new javax.swing.JLabel();
-        botaoConverter = new javax.swing.JButton();
         txtImagemOriginal = new javax.swing.JLabel();
         txtImagemEditada = new javax.swing.JLabel();
         labelMediana = new javax.swing.JLabel();
@@ -28,8 +27,6 @@ public class gui extends javax.swing.JFrame {
         labelMedInferior = new javax.swing.JLabel();
         labelImgEditada = new javax.swing.JLabel();
         labelVariancia = new javax.swing.JLabel();
-        botaoEspelharHorizontal = new javax.swing.JButton();
-        botaoEspelharVertical = new javax.swing.JButton();
         sliderRotacao = new javax.swing.JSlider();
         labelRotacao = new javax.swing.JLabel();
         sliderEscala = new javax.swing.JSlider();
@@ -47,6 +44,8 @@ public class gui extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         arquivoAbrir = new javax.swing.JMenuItem();
+        menuEscalaCinza = new javax.swing.JMenu();
+        cinzaConverter = new javax.swing.JMenuItem();
         menuSuavizacao = new javax.swing.JMenu();
         suavizacaoMedia = new javax.swing.JMenuItem();
         suavizacaoMediana = new javax.swing.JMenuItem();
@@ -62,13 +61,6 @@ public class gui extends javax.swing.JFrame {
 
         labelImgOriginal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        botaoConverter.setText("Converter");
-        botaoConverter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoConverterActionPerformed(evt);
-            }
-        });
-
         txtImagemOriginal.setText("Imagem original");
 
         txtImagemEditada.setText("Imagem editada");
@@ -82,20 +74,6 @@ public class gui extends javax.swing.JFrame {
         labelImgEditada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         labelVariancia.setText("Variância: ");
-
-        botaoEspelharHorizontal.setText("Espelhar Horizontalmente");
-        botaoEspelharHorizontal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEspelharHorizontalActionPerformed(evt);
-            }
-        });
-
-        botaoEspelharVertical.setText("Espelhar Verticalmente");
-        botaoEspelharVertical.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEspelharVerticalActionPerformed(evt);
-            }
-        });
 
         sliderRotacao.setMaximum(360);
         sliderRotacao.setValue(0);
@@ -169,6 +147,18 @@ public class gui extends javax.swing.JFrame {
 
         barraMenu.add(menuArquivo);
 
+        menuEscalaCinza.setText("Escala Cinza");
+
+        cinzaConverter.setText("Converter");
+        cinzaConverter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cinzaConverterActionPerformed(evt);
+            }
+        });
+        menuEscalaCinza.add(cinzaConverter);
+
+        barraMenu.add(menuEscalaCinza);
+
         menuSuavizacao.setText("Suavização");
 
         suavizacaoMedia.setText("Media");
@@ -200,9 +190,19 @@ public class gui extends javax.swing.JFrame {
         menuEspelhar.setText("Espelhar");
 
         espelharHorizontalmente.setText("Horizontal");
+        espelharHorizontalmente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                espelharHorizontalmenteActionPerformed(evt);
+            }
+        });
         menuEspelhar.add(espelharHorizontalmente);
 
         espelharVerticalmente.setText("Vertical");
+        espelharVerticalmente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                espelharVerticalmenteActionPerformed(evt);
+            }
+        });
         menuEspelhar.add(espelharVerticalmente);
 
         barraMenu.add(menuEspelhar);
@@ -217,48 +217,29 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelMediana)
+                        .addGap(92, 92, 92)
+                        .addComponent(labelVariancia))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelRotacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtImagemOriginal)
+                            .addComponent(sliderEscala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sliderRotacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(botaoConverter, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelMediana)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelVariancia)
-                                        .addGap(68, 68, 68))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(botaoEspelharHorizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(labelRotacao))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(botaoEspelharVertical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(42, 42, 42)
-                                                .addComponent(jLabel2))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(jLabel3))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelValorBrilho))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelValorContraste))
-                                    .addComponent(sliderEscala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sliderRotacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelImgOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelValorBrilho))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelValorContraste))))
+                    .addComponent(labelImgOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(txtImagemOriginal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelMedInferior)
@@ -277,7 +258,7 @@ public class gui extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtImagemEditada)
                             .addComponent(labelImgEditada, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,22 +275,9 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(labelVariancia)
                     .addComponent(labelMedInferior)
                     .addComponent(labelMediana)
-                    .addComponent(labeMedSuperior)
-                    .addComponent(botaoConverter))
+                    .addComponent(labeMedSuperior))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botaoEspelharHorizontal)
-                                .addComponent(labelRotacao))
-                            .addComponent(sliderRotacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botaoEspelharVertical)
-                                .addComponent(jLabel2))
-                            .addComponent(sliderEscala, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(offsetX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,19 +285,26 @@ public class gui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(offsetY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelOffSetY))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(labelValorBrilho))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelValorContraste)
-                        .addComponent(jLabel3)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                            .addComponent(labelOffSetY)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelRotacao)
+                            .addComponent(sliderRotacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sliderEscala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelValorBrilho))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelValorContraste))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         labelImgOriginal.getAccessibleContext().setAccessibleDescription("");
@@ -342,12 +317,6 @@ public class gui extends javax.swing.JFrame {
     
     escalaCinza escala_cinza = new escalaCinza();
     TransformacaoGeometrica transfoma = new TransformacaoGeometrica();
-    private void botaoConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConverterActionPerformed
-        imagem_editada = escala_cinza.convert(imagem_original);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
-        calculos();
-    }//GEN-LAST:event_botaoConverterActionPerformed
-
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
         //Abre a imagem
         imagem_original = escala_cinza.loadImg();
@@ -363,16 +332,6 @@ public class gui extends javax.swing.JFrame {
         sliderBrilho.setValue(0);
         sliderContraste.setValue(100);        
     }//GEN-LAST:event_arquivoAbrirActionPerformed
-
-    private void botaoEspelharHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEspelharHorizontalActionPerformed
-        imagem_editada = transfoma.espelha_horizontal(imagem_original);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
-    }//GEN-LAST:event_botaoEspelharHorizontalActionPerformed
-
-    private void botaoEspelharVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEspelharVerticalActionPerformed
-        imagem_editada = transfoma.espelha_vertical(imagem_original);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
-    }//GEN-LAST:event_botaoEspelharVerticalActionPerformed
 
     private void sliderRotacaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderRotacaoStateChanged
         imagem_editada = transfoma.rotaciona_imagem(imagem_original, sliderRotacao.getValue());
@@ -419,6 +378,22 @@ public class gui extends javax.swing.JFrame {
         copia_editada = escala_cinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));        // TODO add your handling code here:
     }//GEN-LAST:event_suavizacaoGaussActionPerformed
+
+    private void espelharHorizontalmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espelharHorizontalmenteActionPerformed
+        imagem_editada = transfoma.espelha_horizontal(imagem_original);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));       // TODO add your handling code here:
+    }//GEN-LAST:event_espelharHorizontalmenteActionPerformed
+
+    private void espelharVerticalmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espelharVerticalmenteActionPerformed
+        imagem_editada = transfoma.espelha_vertical(imagem_original);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));        // TODO add your handling code here:
+    }//GEN-LAST:event_espelharVerticalmenteActionPerformed
+
+    private void cinzaConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaConverterActionPerformed
+        imagem_editada = escala_cinza.convert(imagem_original);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
+        calculos();        // TODO add your handling code here:
+    }//GEN-LAST:event_cinzaConverterActionPerformed
     
     private void brilho_contraste(){
         float valorContraste = sliderContraste.getValue();
@@ -478,9 +453,7 @@ public class gui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem arquivoAbrir;
     private javax.swing.JMenuBar barraMenu;
-    private javax.swing.JButton botaoConverter;
-    private javax.swing.JButton botaoEspelharHorizontal;
-    private javax.swing.JButton botaoEspelharVertical;
+    private javax.swing.JMenuItem cinzaConverter;
     private javax.swing.JMenuItem espelharHorizontalmente;
     private javax.swing.JMenuItem espelharVerticalmente;
     private javax.swing.JLabel jLabel1;
@@ -498,6 +471,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JLabel labelValorContraste;
     private javax.swing.JLabel labelVariancia;
     private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenu menuEscalaCinza;
     private javax.swing.JMenu menuEspelhar;
     private javax.swing.JMenu menuSuavizacao;
     private javax.swing.JSpinner offsetX;
