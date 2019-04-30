@@ -3,7 +3,8 @@ package jlabel;
 import converte.escalaCinza;
 import transformacaoGeometrica.TransformacaoGeometrica;
 import filtros.brilhoContraste;
-import filtros.filtrosRuidos;
+import filtros.media;
+import filtros.mediana;
 import filtros.gauss;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -353,13 +354,13 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_sliderContrasteStateChanged
 
     private void suavizacaoMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMediaActionPerformed
-        imagem_editada = filtrosRuidos.media(copia_editada);
+        imagem_editada = media.media(copia_editada);
         copia_editada = escCinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMediaActionPerformed
 
     private void suavizacaoMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMedianaActionPerformed
-        imagem_editada = filtrosRuidos.mediana(imagem_editada);
+        imagem_editada = mediana.mediana(imagem_editada);
         copia_editada = escCinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMedianaActionPerformed
