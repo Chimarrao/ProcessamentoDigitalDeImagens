@@ -17,18 +17,20 @@ public class mediana {
                 imagemRecebe.getHeight(null),
                 BufferedImage.TYPE_INT_ARGB);
 
+        Color cor = new Color(0, 0, 0);
+        int r = 0, g = 0, b = 0;
+        
         for (int x = 1; x < imagemRecebe.getWidth() - 1; x++) {
             for (int y = 1; y < imagemRecebe.getHeight() - 1; y++) {
-                int r = 0, g = 0, b = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        Color color = new Color(imagemRecebe.getRGB(x + (i - 1), y + (j - 1)));
-                        mascaraMediana[i][j] = color;
+                        cor = new Color(imagemRecebe.getRGB(x + (i - 1), y + (j - 1)));
+                        mascaraMediana[i][j] = cor;
                     }
                 }
-                Color color = new Color(r, g, b);
-                color = populaVetor();
-                imagemRetorna.setRGB(x, y, color.getRGB());
+                cor = new Color(r, g, b);
+                cor = populaVetor();
+                imagemRetorna.setRGB(x, y, cor.getRGB());
             }
         }
         return imagemRetorna;

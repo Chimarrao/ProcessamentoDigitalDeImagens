@@ -6,6 +6,7 @@ import filtros.brilhoContraste;
 import filtros.media;
 import filtros.mediana;
 import filtros.gauss;
+import filtros.sobel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -52,6 +53,8 @@ public class gui extends javax.swing.JFrame {
         menuEspelhar = new javax.swing.JMenu();
         espelharHorizontalmente = new javax.swing.JMenuItem();
         espelharVerticalmente = new javax.swing.JMenuItem();
+        menuThreshold = new javax.swing.JMenu();
+        thresholdSobel = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ConverIMG");
@@ -205,6 +208,18 @@ public class gui extends javax.swing.JFrame {
         menuEspelhar.add(espelharVerticalmente);
 
         barraMenu.add(menuEspelhar);
+
+        menuThreshold.setText("Threshold");
+
+        thresholdSobel.setText("Sobel");
+        thresholdSobel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thresholdSobelActionPerformed(evt);
+            }
+        });
+        menuThreshold.add(thresholdSobel);
+
+        barraMenu.add(menuThreshold);
 
         setJMenuBar(barraMenu);
 
@@ -390,6 +405,12 @@ public class gui extends javax.swing.JFrame {
     private void cinzaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaDadosActionPerformed
         gDados.setVisible(true);                
     }//GEN-LAST:event_cinzaDadosActionPerformed
+
+    private void thresholdSobelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thresholdSobelActionPerformed
+        imagem_editada = sobel.sobel(copia_editada);
+        copia_editada = escCinza.copiaImagem(imagem_editada);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
+    }//GEN-LAST:event_thresholdSobelActionPerformed
     
     private void brilho_contraste(){
         float valorContraste = sliderContraste.getValue();
@@ -464,6 +485,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenu menuEscalaCinza;
     private javax.swing.JMenu menuEspelhar;
     private javax.swing.JMenu menuSuavizacao;
+    private javax.swing.JMenu menuThreshold;
     private javax.swing.JSpinner offsetX;
     private javax.swing.JSpinner offsetY;
     private javax.swing.JSlider sliderBrilho;
@@ -473,6 +495,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem suavizacaoGauss;
     private javax.swing.JMenuItem suavizacaoMedia;
     private javax.swing.JMenuItem suavizacaoMediana;
+    private javax.swing.JMenuItem thresholdSobel;
     private javax.swing.JLabel txtImagemEditada;
     private javax.swing.JLabel txtImagemOriginal;
     // End of variables declaration//GEN-END:variables
