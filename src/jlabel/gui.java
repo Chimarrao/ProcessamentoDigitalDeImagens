@@ -22,11 +22,7 @@ public class gui extends javax.swing.JFrame {
         labelImgOriginal = new javax.swing.JLabel();
         txtImagemOriginal = new javax.swing.JLabel();
         txtImagemEditada = new javax.swing.JLabel();
-        labelMediana = new javax.swing.JLabel();
-        labeMedSuperior = new javax.swing.JLabel();
-        labelMedInferior = new javax.swing.JLabel();
         labelImgEditada = new javax.swing.JLabel();
-        labelVariancia = new javax.swing.JLabel();
         sliderRotacao = new javax.swing.JSlider();
         labelRotacao = new javax.swing.JLabel();
         sliderEscala = new javax.swing.JSlider();
@@ -46,6 +42,7 @@ public class gui extends javax.swing.JFrame {
         arquivoAbrir = new javax.swing.JMenuItem();
         menuEscalaCinza = new javax.swing.JMenu();
         cinzaConverter = new javax.swing.JMenuItem();
+        cinzaDados = new javax.swing.JMenuItem();
         menuSuavizacao = new javax.swing.JMenu();
         suavizacaoMedia = new javax.swing.JMenuItem();
         suavizacaoMediana = new javax.swing.JMenuItem();
@@ -65,15 +62,7 @@ public class gui extends javax.swing.JFrame {
 
         txtImagemEditada.setText("Imagem editada");
 
-        labelMediana.setText("Mediana: ");
-
-        labeMedSuperior.setText("Média da metade superior: ");
-
-        labelMedInferior.setText("Moda da metade inferior: ");
-
         labelImgEditada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        labelVariancia.setText("Variância: ");
 
         sliderRotacao.setMaximum(360);
         sliderRotacao.setValue(0);
@@ -157,6 +146,14 @@ public class gui extends javax.swing.JFrame {
         });
         menuEscalaCinza.add(cinzaConverter);
 
+        cinzaDados.setText("Dados");
+        cinzaDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cinzaDadosActionPerformed(evt);
+            }
+        });
+        menuEscalaCinza.add(cinzaDados);
+
         barraMenu.add(menuEscalaCinza);
 
         menuSuavizacao.setText("Suavização");
@@ -217,10 +214,6 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelMediana)
-                        .addGap(92, 92, 92)
-                        .addComponent(labelVariancia))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(labelRotacao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,10 +234,6 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(txtImagemOriginal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelMedInferior)
-                        .addGap(110, 110, 110)
-                        .addComponent(labeMedSuperior))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelOffSetX)
@@ -270,13 +259,7 @@ public class gui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelImgOriginal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(labelImgEditada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelVariancia)
-                    .addComponent(labelMedInferior)
-                    .addComponent(labelMediana)
-                    .addComponent(labeMedSuperior))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -304,7 +287,7 @@ public class gui extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelValorContraste))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         labelImgOriginal.getAccessibleContext().setAccessibleDescription("");
@@ -315,14 +298,16 @@ public class gui extends javax.swing.JFrame {
     BufferedImage imagem_editada = null;
     BufferedImage copia_editada = null;
     
-    escalaCinza escala_cinza = new escalaCinza();
+    guiDados gDados = new guiDados();
+    
+    escalaCinza escCinza = new escalaCinza();
     TransformacaoGeometrica transfoma = new TransformacaoGeometrica();
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
         //Abre a imagem
-        imagem_original = escala_cinza.loadImg();
+        imagem_original = escCinza.loadImg();
         //Copia a imagem
-        imagem_editada = escala_cinza.copiaImagem(imagem_original);
-        copia_editada = escala_cinza.copiaImagem(imagem_editada);
+        imagem_editada = escCinza.copiaImagem(imagem_original);
+        copia_editada = escCinza.copiaImagem(imagem_editada);
         //Sets dos labels com escalas
         labelImgOriginal.setIcon(new ImageIcon(imagem_original.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
@@ -363,37 +348,41 @@ public class gui extends javax.swing.JFrame {
 
     private void suavizacaoMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMediaActionPerformed
         imagem_editada = filtrosRuidos.media(copia_editada);
-        copia_editada = escala_cinza.copiaImagem(imagem_editada);
+        copia_editada = escCinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMediaActionPerformed
 
     private void suavizacaoMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMedianaActionPerformed
         imagem_editada = filtrosRuidos.mediana(imagem_editada);
-        copia_editada = escala_cinza.copiaImagem(imagem_editada);
+        copia_editada = escCinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMedianaActionPerformed
 
     private void suavizacaoGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoGaussActionPerformed
         imagem_editada = filtrosRuidos.gauss(imagem_editada);
-        copia_editada = escala_cinza.copiaImagem(imagem_editada);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));        // TODO add your handling code here:
+        copia_editada = escCinza.copiaImagem(imagem_editada);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoGaussActionPerformed
 
     private void espelharHorizontalmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espelharHorizontalmenteActionPerformed
         imagem_editada = transfoma.espelha_horizontal(imagem_original);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));       // TODO add your handling code here:
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_espelharHorizontalmenteActionPerformed
 
     private void espelharVerticalmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espelharVerticalmenteActionPerformed
         imagem_editada = transfoma.espelha_vertical(imagem_original);
-        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));        // TODO add your handling code here:
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_espelharVerticalmenteActionPerformed
 
     private void cinzaConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaConverterActionPerformed
-        imagem_editada = escala_cinza.convert(imagem_original);
+        imagem_editada = escCinza.convert(imagem_original);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
-        calculos();        // TODO add your handling code here:
+        calculos();
     }//GEN-LAST:event_cinzaConverterActionPerformed
+
+    private void cinzaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaDadosActionPerformed
+        gDados.setVisible(true);                
+    }//GEN-LAST:event_cinzaDadosActionPerformed
     
     private void brilho_contraste(){
         float valorContraste = sliderContraste.getValue();
@@ -408,11 +397,8 @@ public class gui extends javax.swing.JFrame {
     
     private void calculos(){
         //Cálculos
-        labelMedInferior.setText("Moda da metade inferior: " + Integer.toString(escala_cinza.getModa()));
-        labeMedSuperior.setText("Média da metade superior: " + Double.toString(escala_cinza.getMedia()));
-        escala_cinza.criaGraficoHistograma();
-        labelMediana.setText("Mediana: " + Integer.toString(escala_cinza.getMediana()));
-        labelVariancia.setText("Variância: " + Integer.toString(escala_cinza.getVariancia()));
+        gDados.alteraDados(escCinza.getModa(), escCinza.getMedia(), escCinza.getMediana(), escCinza.getVariancia());
+        escCinza.criaGraficoHistograma();
     }
     /**
      * @param args the command line arguments
@@ -454,22 +440,19 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem arquivoAbrir;
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenuItem cinzaConverter;
+    private javax.swing.JMenuItem cinzaDados;
     private javax.swing.JMenuItem espelharHorizontalmente;
     private javax.swing.JMenuItem espelharVerticalmente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel labeMedSuperior;
     private javax.swing.JLabel labelImgEditada;
     private javax.swing.JLabel labelImgOriginal;
-    private javax.swing.JLabel labelMedInferior;
-    private javax.swing.JLabel labelMediana;
     private javax.swing.JLabel labelOffSetX;
     private javax.swing.JLabel labelOffSetY;
     private javax.swing.JLabel labelRotacao;
     private javax.swing.JLabel labelValorBrilho;
     private javax.swing.JLabel labelValorContraste;
-    private javax.swing.JLabel labelVariancia;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenu menuEscalaCinza;
     private javax.swing.JMenu menuEspelhar;

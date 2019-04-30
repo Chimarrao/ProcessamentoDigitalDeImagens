@@ -32,6 +32,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cinzaConverterActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="cinzaDados">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cinzaDadosActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuSuavizacao">
@@ -125,11 +133,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelMediana" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="labelVariancia" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="labelRotacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -155,11 +158,6 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="labelMedInferior" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                      <Component id="labeMedSuperior" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelOffSetX" min="-2" max="-2" attributes="0"/>
@@ -195,14 +193,7 @@
                   <Component id="labelImgOriginal" pref="400" max="32767" attributes="0"/>
                   <Component id="labelImgEditada" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelVariancia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelMedInferior" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelMediana" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labeMedSuperior" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -239,7 +230,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -267,21 +258,6 @@
         <Property name="text" type="java.lang.String" value="Imagem editada"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelMediana">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Mediana: "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labeMedSuperior">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe9;dia da metade superior: "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelMedInferior">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Moda da metade inferior: "/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="labelImgEditada">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -289,11 +265,6 @@
             <LineBorder/>
           </Border>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelVariancia">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Vari&#xe2;ncia: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="sliderRotacao">
