@@ -57,7 +57,7 @@ public class gui extends javax.swing.JFrame {
         thresholdSobel = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ConverIMG");
+        setTitle("Processamento Digital de Imagens");
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(java.awt.Color.white);
 

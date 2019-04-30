@@ -45,7 +45,7 @@ public class sobel {
                     cor = new Color(255, 255, 255);
                     imagemRetorna.setRGB(x, y, cor.getRGB());
                 }else{
-                    cor = new Color(imagemRecebe.getRGB(x, y));
+                    cor = new Color(0, 0, 0);
                     imagemRetorna.setRGB(x, y, cor.getRGB());
                 }
             }
