@@ -6,6 +6,7 @@ import filtros.brilhoContraste;
 import filtros.media;
 import filtros.mediana;
 import filtros.gauss;
+import filtros.limiarizacao;
 import filtros.sobel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -55,6 +56,7 @@ public class gui extends javax.swing.JFrame {
         espelharVerticalmente = new javax.swing.JMenuItem();
         menuThreshold = new javax.swing.JMenu();
         thresholdSobel = new javax.swing.JMenuItem();
+        thresholdLimiarizacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Processamento Digital de Imagens");
@@ -219,6 +221,14 @@ public class gui extends javax.swing.JFrame {
         });
         menuThreshold.add(thresholdSobel);
 
+        thresholdLimiarizacao.setText("Limiarização");
+        thresholdLimiarizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thresholdLimiarizacaoActionPerformed(evt);
+            }
+        });
+        menuThreshold.add(thresholdLimiarizacao);
+
         barraMenu.add(menuThreshold);
 
         setJMenuBar(barraMenu);
@@ -324,6 +334,7 @@ public class gui extends javax.swing.JFrame {
     
     escalaCinza escCinza = new escalaCinza();
     TransformacaoGeometrica transfoma = new TransformacaoGeometrica();
+       
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
         //Abre a imagem
         imagem_original = escCinza.loadImg();
@@ -411,6 +422,14 @@ public class gui extends javax.swing.JFrame {
         copia_editada = escCinza.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdSobelActionPerformed
+
+    private void thresholdLimiarizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thresholdLimiarizacaoActionPerformed
+        limiarizacao limiariza = new limiarizacao();
+        
+        imagem_editada = limiariza.limiarizacao(copia_editada);
+        copia_editada = escCinza.copiaImagem(imagem_editada);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
+    }//GEN-LAST:event_thresholdLimiarizacaoActionPerformed
     
     private void brilho_contraste(){
         float valorContraste = sliderContraste.getValue();
@@ -495,6 +514,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem suavizacaoGauss;
     private javax.swing.JMenuItem suavizacaoMedia;
     private javax.swing.JMenuItem suavizacaoMediana;
+    private javax.swing.JMenuItem thresholdLimiarizacao;
     private javax.swing.JMenuItem thresholdSobel;
     private javax.swing.JLabel txtImagemEditada;
     private javax.swing.JLabel txtImagemOriginal;
