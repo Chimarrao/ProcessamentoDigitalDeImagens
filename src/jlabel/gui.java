@@ -1,6 +1,7 @@
 package jlabel;
 
 import converte.escalaCinza;
+import funcoes.funcoes;
 import transformacaoGeometrica.TransformacaoGeometrica;
 import filtros.brilhoContraste;
 import filtros.media;
@@ -332,15 +333,16 @@ public class gui extends javax.swing.JFrame {
     
     guiDados gDados = new guiDados();
     
-    escalaCinza escCinza = new escalaCinza();
+    funcoes funcoes = new funcoes();
+    escalaCinza cinza = new escalaCinza();
     TransformacaoGeometrica transfoma = new TransformacaoGeometrica();
        
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
         //Abre a imagem
-        imagem_original = escCinza.loadImg();
+        imagem_original = funcoes.carregaImagem();
         //Copia a imagem
-        imagem_editada = escCinza.copiaImagem(imagem_original);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        imagem_editada = funcoes.copiaImagem(imagem_original);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         //Sets dos labels com escalas
         labelImgOriginal.setIcon(new ImageIcon(imagem_original.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
@@ -381,19 +383,19 @@ public class gui extends javax.swing.JFrame {
 
     private void suavizacaoMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMediaActionPerformed
         imagem_editada = media.media(copia_editada);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMediaActionPerformed
 
     private void suavizacaoMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMedianaActionPerformed
         imagem_editada = mediana.mediana(imagem_editada);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMedianaActionPerformed
 
     private void suavizacaoGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoGaussActionPerformed
         imagem_editada = gauss.gauss(imagem_editada);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoGaussActionPerformed
 
@@ -408,7 +410,7 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_espelharVerticalmenteActionPerformed
 
     private void cinzaConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaConverterActionPerformed
-        imagem_editada = escCinza.convert(imagem_original);
+        imagem_editada = cinza.converter(imagem_original);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
         calculos();
     }//GEN-LAST:event_cinzaConverterActionPerformed
@@ -419,7 +421,7 @@ public class gui extends javax.swing.JFrame {
 
     private void thresholdSobelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thresholdSobelActionPerformed
         imagem_editada = sobel.sobel(copia_editada);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdSobelActionPerformed
 
@@ -427,7 +429,7 @@ public class gui extends javax.swing.JFrame {
         limiarizacao limiariza = new limiarizacao();
         
         imagem_editada = limiariza.limiarizacao(copia_editada);
-        copia_editada = escCinza.copiaImagem(imagem_editada);
+        copia_editada = funcoes.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdLimiarizacaoActionPerformed
     
@@ -444,8 +446,8 @@ public class gui extends javax.swing.JFrame {
     
     private void calculos(){
         //Cálculos
-        gDados.alteraDados(escCinza.getModa(), escCinza.getMedia(), escCinza.getMediana(), escCinza.getVariancia());
-        escCinza.criaGraficoHistograma();
+        gDados.alteraDados(cinza.getModa(), cinza.getMedia(), cinza.getMediana(), cinza.getVariancia());
+        cinza.criaGraficoHistograma();
     }
     /**
      * @param args the command line arguments

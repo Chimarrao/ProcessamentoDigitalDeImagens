@@ -2,16 +2,18 @@ package filtros;
 
 import java.awt.image.BufferedImage;
 import converte.escalaCinza;
+import funcoes.funcoes;
 import java.awt.Color;
 
 public class limiarizacao {
 
     public BufferedImage limiarizacao(BufferedImage imagemRecebe) {
+        funcoes funcoes = new funcoes();
         int largura = imagemRecebe.getWidth();
         int altura = imagemRecebe.getHeight();
 
         escalaCinza escCinza = new escalaCinza();
-        BufferedImage imagemRetorna = escCinza.copiaImagem(imagemRecebe);
+        BufferedImage imagemRetorna = funcoes.copiaImagem(imagemRecebe);
         
         for (int y = 0; y < altura; y++) {
             for (int x = 0; x < largura; x++) {
