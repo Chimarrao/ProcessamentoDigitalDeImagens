@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class mediana {
     //Mascara para mediana
-    private static Color[][] mascaraMediana = new Color[][]{
+    private static Color[][] mascara = new Color[][]{
         {Color.WHITE, Color.WHITE, Color.WHITE},
         {Color.WHITE, Color.WHITE, Color.WHITE},
         {Color.WHITE, Color.WHITE, Color.WHITE}
@@ -25,7 +25,7 @@ public class mediana {
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         cor = new Color(imagemRecebe.getRGB(x + (i - 1), y + (j - 1)));
-                        mascaraMediana[i][j] = cor;
+                        mascara[i][j] = cor;
                     }
                 }
                 cor = new Color(r, g, b);
@@ -41,7 +41,7 @@ public class mediana {
         int cont = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                vetor[cont] = mascaraMediana[i][j];
+                vetor[cont] = mascara[i][j];
                 cont ++;
             }
         }

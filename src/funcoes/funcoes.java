@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 
 public class funcoes {
 
-    public static int[] shellSort(int[] vetor) {
+    public int[] shellSort(int[] vetor) {
         int h = 1;
         int n = vetor.length;
         while (h < n) {

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class media {
     //Mascara para média
-    private static int[][] mascaraMedia = new int[][]{
+    private static int[][] mascara = new int[][]{
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1}
@@ -25,14 +25,12 @@ public class media {
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         cor = new Color(imagemRecebe.getRGB(x + (i - 1), y + (j - 1)));
-                        r = r + cor.getRed() * mascaraMedia[i][j];
-                        g = g + cor.getGreen() * mascaraMedia[i][j];
-                        b = b + cor.getBlue() * mascaraMedia[i][j];
+                        r = r + cor.getRed() * mascara[i][j];
+                        g = g + cor.getGreen() * mascara[i][j];
+                        b = b + cor.getBlue() * mascara[i][j];
                     }
                 }
-                r = r / 9;
-                g = g / 9;
-                b = b / 9;
+                r = r / 9; g = g / 9; b = b / 9;
                 r = checkPixel(r);
                 g = checkPixel(g);
                 b = checkPixel(b);

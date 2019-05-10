@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 public class sobel {
     
     //Mascaras para Sobel
-    private static int[][] xKernel = new int[][]{
+    private static int[][] xMascara = new int[][]{
         {1, 0, -1},
         {2, 0, -2},
         {1, 0, -1}
     };
-    private static int[][] yKernel = new int[][]{
+    private static int[][] yMascara = new int[][]{
         {1, 2, 1},
         {0, 0, 0},
         {-1, -2, -1}
@@ -34,8 +34,8 @@ public class sobel {
                     for (int j = 0; j < 3; j++) {
                         cor = new Color(imagemRecebe.getRGB(x + (i - 1), y + (j - 1)));
                         valorPixel = (cor.getRed() + cor.getBlue() + cor.getGreen()) / 3;
-                        gx = gx + valorPixel * xKernel[i][j];
-                        gy = gy + valorPixel * yKernel[i][j];
+                        gx = gx + valorPixel * xMascara[i][j];
+                        gy = gy + valorPixel * yMascara[i][j];
                     }
                 }
                 auxCalculo = Math.sqrt(Math.pow(gx, 2) + Math.pow(gy, 2));

@@ -352,12 +352,12 @@ public class gui extends javax.swing.JFrame {
         sliderBrilho.setValue(0);
         sliderContraste.setValue(100);        
     }//GEN-LAST:event_arquivoAbrirActionPerformed
-
+    
     private void sliderRotacaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderRotacaoStateChanged
         imagem_editada = transfoma.rotaciona_imagem(imagem_original, sliderRotacao.getValue());
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_sliderRotacaoStateChanged
-
+    
     private void sliderEscalaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderEscalaStateChanged
         imagem_editada = transfoma.redimensiona_imagem(imagem_original, sliderEscala.getValue());
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
@@ -374,11 +374,11 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_offsetYStateChanged
 
     private void sliderBrilhoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderBrilhoStateChanged
-        brilho_contraste();
+        atualizaValorBrilhoContraste();
     }//GEN-LAST:event_sliderBrilhoStateChanged
 
     private void sliderContrasteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderContrasteStateChanged
-        brilho_contraste();
+        atualizaValorBrilhoContraste();
     }//GEN-LAST:event_sliderContrasteStateChanged
 
     private void suavizacaoMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMediaActionPerformed
@@ -410,7 +410,8 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_espelharVerticalmenteActionPerformed
 
     private void cinzaConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinzaConverterActionPerformed
-        imagem_editada = cinza.converter(imagem_original);
+        imagem_editada = cinza.converter(copia_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
         calculos();
     }//GEN-LAST:event_cinzaConverterActionPerformed
@@ -433,7 +434,7 @@ public class gui extends javax.swing.JFrame {
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdLimiarizacaoActionPerformed
     
-    private void brilho_contraste(){
+    private void atualizaValorBrilhoContraste(){
         float valorContraste = sliderContraste.getValue();
         valorContraste = valorContraste / 100;
         
@@ -445,7 +446,6 @@ public class gui extends javax.swing.JFrame {
     }
     
     private void calculos(){
-        //Cálculos
         gDados.alteraDados(cinza.getModa(), cinza.getMedia(), cinza.getMediana(), cinza.getVariancia());
         cinza.criaGraficoHistograma();
     }
