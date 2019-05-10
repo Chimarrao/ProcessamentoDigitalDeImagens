@@ -4,17 +4,13 @@ import funcoes.funcoes;
 import java.awt.image.BufferedImage;
 
 public class escalaCinza {
-    int medianaCount;
-    int moda;
-    int valor_variancia = 0;
-    int repetModa;
-    int mediana;
-    double med = 0;
     int histograma[] = new int[256];
-
+    int medianaCount, mediana, repetModa, valor_variancia = 0, moda;
+    double med = 0;
+    
     public BufferedImage converter(BufferedImage imagemRecebe) {
-        funcoes funcoes = new funcoes();
-        BufferedImage imagemRetorna = funcoes.copiaImagem(imagemRecebe);
+        funcoes funcao = new funcoes();
+        BufferedImage imagemRetorna = funcao.copiaImagem(imagemRecebe);
         
         int largura = imagemRecebe.getWidth();
         int altura = imagemRecebe.getHeight();
@@ -53,7 +49,7 @@ public class escalaCinza {
                 imagemRetorna.setRGB(x, y, pixel);
             }
         }
-        mediana = funcoes.shellSort(mediana);
+        mediana = funcao.shellSort(mediana);
 
         //Soma de todos os pixeis dividido por eles
         med = med / ((largura * altura) / 2);

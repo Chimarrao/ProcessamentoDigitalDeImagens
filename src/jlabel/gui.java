@@ -2,7 +2,7 @@ package jlabel;
 
 import converte.escalaCinza;
 import funcoes.funcoes;
-import transformacaoGeometrica.TransformacaoGeometrica;
+import transformacaoGeometrica.transformacaoGeometrica;
 import filtros.brilhoContraste;
 import filtros.media;
 import filtros.mediana;
@@ -244,9 +244,9 @@ public class gui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)
+                                .addGap(35, 35, 35)
+                                .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelValorContraste))
                             .addComponent(labelImgOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,9 +256,9 @@ public class gui extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(sliderEscala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(35, 35, 35)
-                                .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelValorBrilho)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,14 +312,14 @@ public class gui extends javax.swing.JFrame {
                             .addComponent(sliderEscala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelValorBrilho))
+                            .addComponent(labelValorBrilho)
+                            .addComponent(jLabel3)
+                            .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(sliderBrilho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelValorContraste))))
+                            .addComponent(labelValorContraste)
+                            .addComponent(jLabel1)
+                            .addComponent(sliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -333,16 +333,16 @@ public class gui extends javax.swing.JFrame {
     
     guiDados gDados = new guiDados();
     
-    funcoes funcoes = new funcoes();
+    funcoes funcao = new funcoes();
     escalaCinza cinza = new escalaCinza();
-    TransformacaoGeometrica transfoma = new TransformacaoGeometrica();
+    transformacaoGeometrica transfoma = new transformacaoGeometrica();
        
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
         //Abre a imagem
-        imagem_original = funcoes.carregaImagem();
+        imagem_original = funcao.carregaImagem();
         //Copia a imagem
-        imagem_editada = funcoes.copiaImagem(imagem_original);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        imagem_editada = funcao.copiaImagem(imagem_original);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         //Sets dos labels com escalas
         labelImgOriginal.setIcon(new ImageIcon(imagem_original.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
@@ -383,19 +383,19 @@ public class gui extends javax.swing.JFrame {
 
     private void suavizacaoMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMediaActionPerformed
         imagem_editada = media.media(copia_editada);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMediaActionPerformed
 
     private void suavizacaoMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoMedianaActionPerformed
         imagem_editada = mediana.mediana(imagem_editada);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoMedianaActionPerformed
 
     private void suavizacaoGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suavizacaoGaussActionPerformed
         imagem_editada = gauss.gauss(imagem_editada);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_suavizacaoGaussActionPerformed
 
@@ -421,7 +421,7 @@ public class gui extends javax.swing.JFrame {
 
     private void thresholdSobelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thresholdSobelActionPerformed
         imagem_editada = sobel.sobel(copia_editada);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdSobelActionPerformed
 
@@ -429,7 +429,7 @@ public class gui extends javax.swing.JFrame {
         limiarizacao limiariza = new limiarizacao();
         
         imagem_editada = limiariza.limiarizacao(copia_editada);
-        copia_editada = funcoes.copiaImagem(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdLimiarizacaoActionPerformed
     

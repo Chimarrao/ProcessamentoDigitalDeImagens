@@ -1,5 +1,6 @@
 package filtros;
 
+import funcoes.funcoes;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 

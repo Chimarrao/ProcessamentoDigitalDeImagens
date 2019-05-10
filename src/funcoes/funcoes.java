@@ -10,9 +10,9 @@ import javax.swing.JFileChooser;
 
 public class funcoes {
 
-    public static int[] shellSort(int[] nums) {
+    public static int[] shellSort(int[] vetor) {
         int h = 1;
-        int n = nums.length;
+        int n = vetor.length;
         while (h < n) {
             h = h * 3 + 1;
         }
@@ -21,17 +21,17 @@ public class funcoes {
         int j;
         while (h > 0) {
             for (int i = h; i < n; i++) {
-                c = nums[i];
+                c = vetor[i];
                 j = i;
-                while (j >= h && nums[j - h] > c) {
-                    nums[j] = nums[j - h];
+                while (j >= h && vetor[j - h] > c) {
+                    vetor[j] = vetor[j - h];
                     j = j - h;
                 }
-                nums[j] = c;
+                vetor[j] = c;
             }
             h = h / 2;
         }
-        return nums;
+        return vetor;
     }
 
     public BufferedImage copiaImagem(BufferedImage imagemRecebe) {
