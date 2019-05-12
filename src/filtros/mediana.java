@@ -49,32 +49,33 @@ public class mediana {
         color = bubbleSort(vetor);
         return color;
     }
-    //Organiza o vetor e pega o elemento central
-    public static Color bubbleSort(Color v[]) {
+    //Organiza o vetor e pega o elemento central da matriz 3x3
+    public static Color bubbleSort(Color vetor[]) {
         Color color = new Color(0,0,0);
-        for (int i = v.length; i >= 1; i--) {
+        for (int i = vetor.length; i >= 1; i--) {
             for (int j = 1; j < i; j++) {
                 Integer anterior = 0, atual = 0;
                 try {
-                    anterior = anterior + (int) v[j - 1].getRed();
-                    anterior = anterior + (int) v[j - 1].getGreen();
-                    anterior = anterior + (int) v[j - 1].getBlue();
+                    anterior = anterior + (int) vetor[j - 1].getRed();
+                    anterior = anterior + (int) vetor[j - 1].getGreen();
+                    anterior = anterior + (int) vetor[j - 1].getBlue();
                     
-                    atual = atual + (int) v[j].getRed();
-                    atual = atual + (int) v[j].getGreen();
-                    atual = atual + (int) v[j].getBlue();
+                    atual = atual + (int) vetor[j].getRed();
+                    atual = atual + (int) vetor[j].getGreen();
+                    atual = atual + (int) vetor[j].getBlue();
                     
+                    //Faz a troca
                     if (anterior > atual) {
-                        Color aux = v[j];
-                        v[j] = v[j - 1];
-                        v[j - 1] = aux;
+                        Color aux = vetor[j];
+                        vetor[j] = vetor[j - 1];
+                        vetor[j - 1] = aux;
                     }
                 } catch (Exception ex) {
                 }
             }
         }
-        if(v[5] != null){
-            color = v[5];
+        if(vetor[5] != null){
+            color = vetor[5];
         }
         return color;
     }

@@ -25,8 +25,8 @@ public class gui extends javax.swing.JFrame {
     private void initComponents() {
 
         labelImgOriginal = new javax.swing.JLabel();
-        txtImagemOriginal = new javax.swing.JLabel();
-        txtImagemEditada = new javax.swing.JLabel();
+        labelImagemOriginal = new javax.swing.JLabel();
+        labelImagemEditada = new javax.swing.JLabel();
         labelImgEditada = new javax.swing.JLabel();
         sliderRotacao = new javax.swing.JSlider();
         labelRotacao = new javax.swing.JLabel();
@@ -45,6 +45,7 @@ public class gui extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         arquivoAbrir = new javax.swing.JMenuItem();
+        arquivoFechar = new javax.swing.JMenuItem();
         menuEscalaCinza = new javax.swing.JMenu();
         cinzaConverter = new javax.swing.JMenuItem();
         cinzaDados = new javax.swing.JMenuItem();
@@ -66,9 +67,9 @@ public class gui extends javax.swing.JFrame {
 
         labelImgOriginal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtImagemOriginal.setText("Imagem original");
+        labelImagemOriginal.setText("Imagem original");
 
-        txtImagemEditada.setText("Imagem editada");
+        labelImagemEditada.setText("Imagem editada");
 
         labelImgEditada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -142,6 +143,14 @@ public class gui extends javax.swing.JFrame {
         });
         menuArquivo.add(arquivoAbrir);
 
+        arquivoFechar.setText("Fechar");
+        arquivoFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arquivoFecharActionPerformed(evt);
+            }
+        });
+        menuArquivo.add(arquivoFechar);
+
         barraMenu.add(menuArquivo);
 
         menuEscalaCinza.setText("Escala Cinza");
@@ -182,7 +191,7 @@ public class gui extends javax.swing.JFrame {
         });
         menuSuavizacao.add(suavizacaoMediana);
 
-        suavizacaoGauss.setText("Graussiano");
+        suavizacaoGauss.setText("Gauss");
         suavizacaoGauss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suavizacaoGaussActionPerformed(evt);
@@ -250,7 +259,7 @@ public class gui extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelValorContraste))
                             .addComponent(labelImgOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtImagemOriginal)
+                            .addComponent(labelImagemOriginal)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(30, 30, 30)
@@ -274,7 +283,7 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtImagemEditada)
+                                    .addComponent(labelImagemEditada)
                                     .addComponent(labelImgEditada, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelRotacao)
@@ -286,8 +295,8 @@ public class gui extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtImagemOriginal)
-                    .addComponent(txtImagemEditada))
+                    .addComponent(labelImagemOriginal)
+                    .addComponent(labelImagemEditada))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelImgOriginal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
@@ -433,6 +442,11 @@ public class gui extends javax.swing.JFrame {
         copia_editada = funcao.copiaImagem(imagem_editada);
         labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_thresholdLimiarizacaoActionPerformed
+
+    private void arquivoFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoFecharActionPerformed
+        labelImgOriginal.setIcon(null);
+        labelImgEditada.setIcon(null);
+    }//GEN-LAST:event_arquivoFecharActionPerformed
     
     private void atualizaValorBrilhoContraste(){
         float valorContraste = sliderContraste.getValue();
@@ -487,6 +501,7 @@ public class gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem arquivoAbrir;
+    private javax.swing.JMenuItem arquivoFechar;
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenuItem cinzaConverter;
     private javax.swing.JMenuItem cinzaDados;
@@ -495,6 +510,8 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel labelImagemEditada;
+    private javax.swing.JLabel labelImagemOriginal;
     private javax.swing.JLabel labelImgEditada;
     private javax.swing.JLabel labelImgOriginal;
     private javax.swing.JLabel labelOffSetX;
@@ -518,7 +535,5 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem suavizacaoMediana;
     private javax.swing.JMenuItem thresholdLimiarizacao;
     private javax.swing.JMenuItem thresholdSobel;
-    private javax.swing.JLabel txtImagemEditada;
-    private javax.swing.JLabel txtImagemOriginal;
     // End of variables declaration//GEN-END:variables
 }

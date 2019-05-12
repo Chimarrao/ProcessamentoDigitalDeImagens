@@ -17,6 +17,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arquivoAbrirActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="arquivoFechar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fechar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arquivoFecharActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuEscalaCinza">
@@ -65,7 +73,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="suavizacaoGauss">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Graussiano"/>
+                <Property name="text" type="java.lang.String" value="Gauss"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suavizacaoGaussActionPerformed"/>
@@ -165,7 +173,7 @@
                               <Component id="labelValorContraste" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="labelImgOriginal" min="-2" pref="550" max="-2" attributes="0"/>
-                          <Component id="txtImagemOriginal" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelImagemOriginal" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -195,7 +203,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtImagemEditada" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelImagemEditada" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelImgEditada" min="-2" pref="550" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -215,8 +223,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtImagemOriginal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtImagemEditada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelImagemOriginal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelImagemEditada" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -278,12 +286,12 @@
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtImagemOriginal">
+    <Component class="javax.swing.JLabel" name="labelImagemOriginal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Imagem original"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtImagemEditada">
+    <Component class="javax.swing.JLabel" name="labelImagemEditada">
       <Properties>
         <Property name="text" type="java.lang.String" value="Imagem editada"/>
       </Properties>
