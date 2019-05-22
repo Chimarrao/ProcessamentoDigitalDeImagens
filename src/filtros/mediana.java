@@ -4,13 +4,14 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class mediana {
+
     //Mascara para mediana
     private static Color[][] mascara = new Color[][]{
         {Color.WHITE, Color.WHITE, Color.WHITE},
         {Color.WHITE, Color.WHITE, Color.WHITE},
         {Color.WHITE, Color.WHITE, Color.WHITE}
     };
-    
+
     public static BufferedImage mediana(BufferedImage imagemRecebe) {
         BufferedImage imagemRetorna = new BufferedImage(
                 imagemRecebe.getWidth(null),
@@ -19,7 +20,7 @@ public class mediana {
 
         Color cor = new Color(0, 0, 0);
         int r = 0, g = 0, b = 0;
-        
+
         for (int x = 1; x < imagemRecebe.getWidth() - 1; x++) {
             for (int y = 1; y < imagemRecebe.getHeight() - 1; y++) {
                 for (int i = 0; i < 3; i++) {
@@ -35,6 +36,7 @@ public class mediana {
         }
         return imagemRetorna;
     }
+
     //Popula o vetor que será organizado
     public static Color populaVetor() {
         Color[] vetor = new Color[10];
@@ -42,16 +44,17 @@ public class mediana {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 vetor[cont] = mascara[i][j];
-                cont ++;
+                cont++;
             }
         }
-        Color color = new Color(0,0,0);
+        Color color = new Color(0, 0, 0);
         color = bubbleSort(vetor);
         return color;
     }
+
     //Organiza o vetor e pega o elemento central da matriz 3x3
     public static Color bubbleSort(Color vetor[]) {
-        Color color = new Color(0,0,0);
+        Color color = new Color(0, 0, 0);
         for (int i = vetor.length; i >= 1; i--) {
             for (int j = 1; j < i; j++) {
                 Integer anterior = 0, atual = 0;
@@ -59,11 +62,11 @@ public class mediana {
                     anterior = anterior + (int) vetor[j - 1].getRed();
                     anterior = anterior + (int) vetor[j - 1].getGreen();
                     anterior = anterior + (int) vetor[j - 1].getBlue();
-                    
+
                     atual = atual + (int) vetor[j].getRed();
                     atual = atual + (int) vetor[j].getGreen();
                     atual = atual + (int) vetor[j].getBlue();
-                    
+
                     //Faz a troca
                     if (anterior > atual) {
                         Color aux = vetor[j];
@@ -74,7 +77,7 @@ public class mediana {
                 }
             }
         }
-        if(vetor[5] != null){
+        if (vetor[5] != null) {
             color = vetor[5];
         }
         return color;

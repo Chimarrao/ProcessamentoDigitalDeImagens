@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class sobel {
-    
+
     //Mascaras para Sobel
     private static int[][] xMascara = new int[][]{
         {1, 0, -1},

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class gauss {
+
     //Mascara para Gauss
     private static int[][] mascara = new int[][]{
         {1, 2, 1},
@@ -30,7 +31,9 @@ public class gauss {
                         b = b + cor.getBlue() * mascara[i][j];
                     }
                 }
-                r = r / 16; g = g / 16; b = b / 16;
+                r = r / 16;
+                g = g / 16;
+                b = b / 16;
                 r = checkPixel(r);
                 g = checkPixel(g);
                 b = checkPixel(b);

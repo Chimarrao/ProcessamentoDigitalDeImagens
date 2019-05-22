@@ -1,5 +1,6 @@
 package jlabel;
 
+import afinamento.holt;
 import converte.escalaCinza;
 import funcoes.funcoes;
 import transformacaoGeometrica.transformacaoGeometrica;
@@ -59,6 +60,8 @@ public class gui extends javax.swing.JFrame {
         menuThreshold = new javax.swing.JMenu();
         thresholdSobel = new javax.swing.JMenuItem();
         thresholdLimiarizacao = new javax.swing.JMenuItem();
+        menuAfinamento = new javax.swing.JMenu();
+        afinamentoHolt = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Processamento Digital de Imagens");
@@ -240,6 +243,19 @@ public class gui extends javax.swing.JFrame {
         menuThreshold.add(thresholdLimiarizacao);
 
         barraMenu.add(menuThreshold);
+
+        menuAfinamento.setText("Afinamento");
+        menuAfinamento.setActionCommand("Afinamento");
+
+        afinamentoHolt.setText("Holt");
+        afinamentoHolt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afinamentoHoltActionPerformed(evt);
+            }
+        });
+        menuAfinamento.add(afinamentoHolt);
+
+        barraMenu.add(menuAfinamento);
 
         setJMenuBar(barraMenu);
 
@@ -447,6 +463,12 @@ public class gui extends javax.swing.JFrame {
         labelImgOriginal.setIcon(null);
         labelImgEditada.setIcon(null);
     }//GEN-LAST:event_arquivoFecharActionPerformed
+
+    private void afinamentoHoltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afinamentoHoltActionPerformed
+        imagem_editada = holt.holt(imagem_editada);
+        copia_editada = funcao.copiaImagem(imagem_editada);
+        labelImgEditada.setIcon(new ImageIcon(imagem_editada.getScaledInstance(550, 394, Image.SCALE_DEFAULT)));
+    }//GEN-LAST:event_afinamentoHoltActionPerformed
     
     private void atualizaValorBrilhoContraste(){
         float valorContraste = sliderContraste.getValue();
@@ -500,6 +522,7 @@ public class gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem afinamentoHolt;
     private javax.swing.JMenuItem arquivoAbrir;
     private javax.swing.JMenuItem arquivoFechar;
     private javax.swing.JMenuBar barraMenu;
@@ -519,6 +542,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JLabel labelRotacao;
     private javax.swing.JLabel labelValorBrilho;
     private javax.swing.JLabel labelValorContraste;
+    private javax.swing.JMenu menuAfinamento;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenu menuEscalaCinza;
     private javax.swing.JMenu menuEspelhar;
